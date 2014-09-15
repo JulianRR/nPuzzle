@@ -35,4 +35,7 @@ n-Puzzle with three difficulties, 3x3, 4x4 and 5x5.
 ## 1) Home screen
 HomeActiviy will be a Fullscreen activity. The default Fullscreen template from android studio will be used for this activity. I will add two buttons. The first button is the play button which will take the user to the next (GameSetupActivity.java) activity. The second button is the help button which will show a pop up window where the game will be explained.
 
-usefull Classes: [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html)
+usefull Classes
+* [Intent](http://developer.android.com/reference/android/content/Intent.html)
+  * public abstract void startActivity (Intent intent, Bundle options)
+* [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html), will be used for the help button pop up.
