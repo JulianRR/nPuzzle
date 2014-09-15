@@ -32,4 +32,4 @@ n-Puzzle with three difficulties, 3x3, 4x4 and 5x5.
 5. End game
 6. Extra's
 
-## 1 Home screen
+## 1) Home screen
