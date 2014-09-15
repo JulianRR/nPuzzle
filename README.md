@@ -37,5 +37,5 @@ HomeActiviy will be a Fullscreen activity. The default Fullscreen template from 
 
 usefull Classes
 * [Intent](http://developer.android.com/reference/android/content/Intent.html)
-  * public abstract void startActivity (Intent intent, Bundle options)
+  * [public abstract void startActivity (Intent intent, Bundle options)](http://developer.android.com/reference/android/content/Context.html#startActivity(android.content.Intent)), will be used to change activities.
 * [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html), will be used for the help button pop up.
