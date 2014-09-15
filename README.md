@@ -26,7 +26,7 @@ n-Puzzle with three difficulties, 3x3, 4x4 and 5x5.
 # Design Document
 
 1. Home screen, HomeActivity.java
-2. Game setup
+2. Game setup, GameSetupActivity.java
 3. Gameplay
 4. Menu
 5. End game
@@ -35,7 +35,26 @@ n-Puzzle with three difficulties, 3x3, 4x4 and 5x5.
 ## 1) Home screen
 HomeActiviy will be a Fullscreen activity. The default Fullscreen template from android studio will be used for this activity. I will add two buttons. The first button is the play button which will take the user to the next (GameSetupActivity.java) activity. The second button is the help button which will show a pop up window where the game will be explained.
 
-usefull Classes
+Usefull classes:
 * [Intent](http://developer.android.com/reference/android/content/Intent.html)
   * [public abstract void startActivity (Intent intent, Bundle options)](http://developer.android.com/reference/android/content/Context.html#startActivity(android.content.Intent)), will be used to change activities.
 * [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html), will be used for the help button pop up.
+
+## 2) Game setup
+GameSetupActivity will be a Fullscreen activity. The default Fullscreen template from android studio will be used for this activity.
+
+Usefull classes:
+
+## 3) Gameplay
+
+
+Usefull classes:
+
+## 4) Menu
+The menu will be a navigation drawer.
+
+Usefull classes:
+
+## 5) End game
+
+Usefull classes:
