@@ -58,3 +58,8 @@ Usefull classes:
 ## 5) End game
 
 Usefull classes:
+
+
+# Style guide
+Thee style guide used is the default style guide from android studio
+https://source.android.com/source/code-style.html
