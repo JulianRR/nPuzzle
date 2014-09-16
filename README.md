@@ -48,13 +48,17 @@ Usefull classes:
 * [ToggleButton](http://developer.android.com/reference/android/widget/ToggleButton.html), used to choose the difficulty.
 * [ImageButton](http://developer.android.com/reference/android/widget/ImageButton.html), used for choosing one of the three existing. 
 * [Intent](http://developer.android.com/reference/android/content/Intent.html)
-  * [ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK), used to choose an image from the gallery on the device
+  * [ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK), used to choose an image from the gallery on the device.
     * [Tutorial](http://sudhanshuvinodgupta.blogspot.nl/2012/07/using-intentactionpick.html)
 
 ## 3) Gameplay
-
+The image chosen will be shown 3 seconds before the game starts. After these 3 seconds a "stopwatch" will start to keep track of the time it takes to solve the puzzle.
 
 Usefull classes:
+*[ViewFlipper](http://developer.android.com/reference/android/widget/ViewFlipper.html), used to switch to a shuffled image after 3 seconds.
+  * [public void setFlipInterval (int milliseconds)](http://developer.android.com/reference/android/widget/ViewFlipper.html#setFlipInterval(int)), int parameter will be set to 3000
+  * [public void startFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#startFlipping()), start the timer, after 3000 milliseconds the view will switch to the shuffled image (the game) view.
+  * [public void stopFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#stopFlipping()), stop the timer immediately after the view switched.
 
 ## 4) Menu
 The menu will be a navigation drawer.
