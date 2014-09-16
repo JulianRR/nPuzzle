@@ -59,8 +59,8 @@ Usefull classes:
   * [public void setFlipInterval (int milliseconds)](http://developer.android.com/reference/android/widget/ViewFlipper.html#setFlipInterval(int)), int parameter will be set to 3000
   * [public void startFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#startFlipping()), start the timer, after 3000 milliseconds the view will switch to the shuffled image (the game) view.
   * [public void stopFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#stopFlipping()), stop the timer immediately after the view switched.
-*[Timer](http://developer.android.com/reference/java/util/Timer.html), used to time the puzzle.
-  [Tutorial](http://stackoverflow.com/questions/4597690/android-timer-how)
+* [Timer](http://developer.android.com/reference/java/util/Timer.html), used to time the puzzle.
+  * [Tutorial](http://stackoverflow.com/questions/4597690/android-timer-how)
 
 Frameworks:
 * [AndEngine](https://github.com/nicolasgramlich/AndEngine), used to make the n-puzzle.
