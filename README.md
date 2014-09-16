@@ -41,9 +41,15 @@ Usefull classes:
 * [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html), will be used for the help button pop up.
 
 ## 2) Game setup
-GameSetupActivity will be a Fullscreen activity. The default Fullscreen template from android studio will be used for this activity.
+GameSetupActivity will be a Fullscreen activity. The default Fullscreen template from android studio will be used for this activity. The difficulty buttons will set a global variable when pressed to keep track of which difficulty is used.
+The user has the option to choose between three existing images. The user can also choose a custom image from his or her device. When an image is chosen the game starts (if the user also chose a difficulty, so if the difficulty variable is set).
 
 Usefull classes:
+* [ToggleButton](http://developer.android.com/reference/android/widget/ToggleButton.html), used to choose the difficulty.
+* [ImageButton](http://developer.android.com/reference/android/widget/ImageButton.html), used for choosing one of the three existing. 
+* [Intent](http://developer.android.com/reference/android/content/Intent.html)
+  * [ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK), used to choose an image from the gallery on the device
+    * [Tutorial](http://sudhanshuvinodgupta.blogspot.nl/2012/07/using-intentactionpick.html)
 
 ## 3) Gameplay
 
