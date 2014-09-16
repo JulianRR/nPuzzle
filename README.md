@@ -27,7 +27,7 @@ n-Puzzle with three difficulties, 3x3, 4x4 and 5x5.
 
 1. Home screen, HomeActivity.java
 2. Game setup, GameSetupActivity.java
-3. Gameplay
+3. Gameplay, PuzzleActivity.java
 4. Menu
 5. End game
 6. Extra's
@@ -52,7 +52,7 @@ Usefull classes:
     * [Tutorial](http://sudhanshuvinodgupta.blogspot.nl/2012/07/using-intentactionpick.html)
 
 ## 3) Gameplay
-The image chosen will be shown 3 seconds before the game starts. After these 3 seconds a "stopwatch" will start to keep track of the time it takes to solve the puzzle.
+PuzzleActivity will be a Fullscreen activity. he default Fullscreen template from android studio will be used for this activity. The image chosen will be shown 3 seconds before the game starts. After these 3 seconds a "stopwatch" will start to keep track of the time it takes to solve the puzzle.
 
 Usefull classes:
 * [ViewFlipper](http://developer.android.com/reference/android/widget/ViewFlipper.html), used to switch to a shuffled image after 3 seconds.
@@ -67,17 +67,18 @@ Frameworks:
 * [Cocos2d-Android](http://www.cocos2d-x.org/), used instead of AndEngine if this works on android 2.1.
 
 ## 4) Menu
-For now the menu will be a popup menu. The menu will be a navigation drawer if i decide to not make the app fullscreen.
+I decided to change the menu into a popup menu instead of a navigation drawer, because a navigation drawer does not work properly with a fullscreen app.
 
 Usefull classes:
 * [Popup menu](http://developer.android.com/reference/android/widget/PopupMenu.html), used to create a popup menu.
-* [Navigation drawer](https://developer.android.com/training/implementing-navigation/nav-drawer.html), used to make a navigation drawer.
+
 
 ## 5) End game
 A popup window will be used instead of a new activiy to congratulate the player on solving the puzzle. The popup window will be a bit transparent so the completed image will be visible.
 
 Usefull classes:
 * [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html)
+
 
 
 # Style guide
