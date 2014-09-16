@@ -66,6 +66,10 @@ Frameworks:
 * [AndEngine](https://github.com/nicolasgramlich/AndEngine), used to make the n-puzzle.
 * [Cocos2d-Android](http://www.cocos2d-x.org/), used instead of AndEngine if this works on android 2.1.
 
+A few AndEngine tutorials, because AndEngine has very little documentation.
+* [General tutorial](http://android.kul.is/p/list-of-tutorials.html)
+* [Game Example](http://www.matim-dev.com/full-game-tutorial---part-1.html)
+
 ## 4) Menu
 I decided to change the menu into a popup menu instead of a navigation drawer, because a navigation drawer does not work properly with a fullscreen app.
 
