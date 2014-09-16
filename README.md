@@ -74,10 +74,12 @@ Usefull classes:
 * [Navigation drawer](https://developer.android.com/training/implementing-navigation/nav-drawer.html), used to make a navigation drawer.
 
 ## 5) End game
+A popup window will be used instead of a new activiy to congratulate the player on solving the puzzle. The popup window will be a bit transparent so the completed image will be visible.
 
 Usefull classes:
+* [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html)
 
 
 # Style guide
-Thee style guide used is the default style guide from android studio
+The style guide used is the default style guide from android studio
 https://source.android.com/source/code-style.html
