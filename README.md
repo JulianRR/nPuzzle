@@ -60,6 +60,10 @@ Usefull classes:
   * [public void startFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#startFlipping()), start the timer, after 3000 milliseconds the view will switch to the shuffled image (the game) view.
   * [public void stopFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#stopFlipping()), stop the timer immediately after the view switched.
 
+Frameworks:
+* [Libgdx](https://github.com/libgdx/libgdx/wiki/Using-libgdx-with-android-studio), used to make the n-puzzle.
+* [Cocos2d-Android](http://www.cocos2d-x.org/), used instead of Libgdx if this works on android 2.1.
+
 ## 4) Menu
 The menu will be a navigation drawer.
 
