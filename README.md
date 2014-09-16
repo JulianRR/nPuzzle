@@ -59,15 +59,19 @@ Usefull classes:
   * [public void setFlipInterval (int milliseconds)](http://developer.android.com/reference/android/widget/ViewFlipper.html#setFlipInterval(int)), int parameter will be set to 3000
   * [public void startFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#startFlipping()), start the timer, after 3000 milliseconds the view will switch to the shuffled image (the game) view.
   * [public void stopFlipping ()](http://developer.android.com/reference/android/widget/ViewFlipper.html#stopFlipping()), stop the timer immediately after the view switched.
+*[Timer](http://developer.android.com/reference/java/util/Timer.html), used to time the puzzle.
+  [Tutorial](http://stackoverflow.com/questions/4597690/android-timer-how)
 
 Frameworks:
-* [Libgdx](https://github.com/libgdx/libgdx/wiki/Using-libgdx-with-android-studio), used to make the n-puzzle.
-* [Cocos2d-Android](http://www.cocos2d-x.org/), used instead of Libgdx if this works on android 2.1.
+* [AndEngine](https://github.com/nicolasgramlich/AndEngine), used to make the n-puzzle.
+* [Cocos2d-Android](http://www.cocos2d-x.org/), used instead of AndEngine if this works on android 2.1.
 
 ## 4) Menu
-The menu will be a navigation drawer.
+For now the menu will be a popup menu. The menu will be a navigation drawer if i decide to not make the app fullscreen.
 
 Usefull classes:
+* [Popup menu](http://developer.android.com/reference/android/widget/PopupMenu.html), used to create a popup menu.
+* [Navigation drawer](https://developer.android.com/training/implementing-navigation/nav-drawer.html), used to make a navigation drawer.
 
 ## 5) End game
 
