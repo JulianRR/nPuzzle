@@ -17,7 +17,7 @@ Usefull classes:
 * [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html), will be used for the help button pop up.
 
 
-![alt tag](https://github.com/JulianRR/nPuzzle/blob/master/doc/HomeActivity.jpg =450x450)
+![](https://github.com/JulianRR/nPuzzle/blob/master/doc/HomeActivity.jpg =450x450)
 
 ## 2) Game setup
 GameSetupActivity will be a Fullscreen activity. The default Fullscreen template from android studio will be used for this activity. The difficulty buttons will set a global variable when pressed to keep track of which difficulty is used.
