@@ -78,10 +78,11 @@ Usefull classes:
 
 
 ## 5) End game
-A popup window will be used instead of a new activiy to congratulate the player on solving the puzzle. The popup window will be a bit transparent so the completed image will be visible.
+SolvedActivity will be a fullscreen activity. The user is congratulated on solving the puzzle. The completed image is shown with the time it took to solve it and the amount of moves. There will be a play again button. This button will bring the user back to GameSetupActivity.
 
 Usefull classes:
-* [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html)
+* [Intent](http://developer.android.com/reference/android/content/Intent.html)
+  * [public abstract void startActivity (Intent intent, Bundle options)](http://developer.android.com/reference/android/content/Context.html#startActivity(android.content.Intent)), will be used to change activities.
 
 
 
