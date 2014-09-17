@@ -16,6 +16,9 @@ Usefull classes:
   * [public abstract void startActivity (Intent intent, Bundle options)](http://developer.android.com/reference/android/content/Context.html#startActivity(android.content.Intent)), will be used to change activities.
 * [PopupWindow](http://developer.android.com/reference/android/widget/PopupWindow.html), will be used for the help button pop up.
 
+
+![alt tag](https://github.com/JulianRR/nPuzzle/blob/master/doc/HomeActivity.jpg)
+
 ## 2) Game setup
 GameSetupActivity will be a Fullscreen activity. The default Fullscreen template from android studio will be used for this activity. The difficulty buttons will set a global variable when pressed to keep track of which difficulty is used.
 The user has the option to choose between three existing images. The user can also choose a custom image from his or her device. When an image is chosen the game starts (if the user also chose a difficulty, so if the difficulty variable is set).
@@ -26,6 +29,9 @@ Usefull classes:
 * [Intent](http://developer.android.com/reference/android/content/Intent.html)
   * [ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK), used to choose an image from the gallery on the device.
     * [Tutorial](http://sudhanshuvinodgupta.blogspot.nl/2012/07/using-intentactionpick.html)
+
+
+![alt tag](https://github.com/JulianRR/nPuzzle/blob/master/doc/GameSetupAcitivy.jpg)
 
 ## 3) Gameplay
 PuzzleActivity will be a Fullscreen activity. he default Fullscreen template from android studio will be used for this activity. The image chosen will be shown 3 seconds before the game starts. After these 3 seconds a "stopwatch" will start to keep track of the time it takes to solve the puzzle.
@@ -46,6 +52,9 @@ A few AndEngine tutorials, because AndEngine has very little documentation.
 * [General tutorial](http://android.kul.is/p/list-of-tutorials.html)
 * [Game Example](http://www.matim-dev.com/full-game-tutorial---part-1.html)
 
+
+![alt tag](https://github.com/JulianRR/nPuzzle/blob/master/doc/PuzzleActivity.jpg)
+
 ## 4) Menu
 I decided to change the menu into a popup menu instead of a navigation drawer, because a navigation drawer does not work properly with a fullscreen app.
 
@@ -60,3 +69,5 @@ Usefull classes:
 * [Intent](http://developer.android.com/reference/android/content/Intent.html)
   * [public abstract void startActivity (Intent intent, Bundle options)](http://developer.android.com/reference/android/content/Context.html#startActivity(android.content.Intent)), will be used to change activities.
 
+
+![alt tag](https://github.com/JulianRR/nPuzzle/blob/master/doc/SolvedActivity.jpg)
