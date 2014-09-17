@@ -21,6 +21,7 @@ n-Puzzle with three difficulties, 3x3, 4x4 and 5x5.
 * When puzzle is solved the player is congratulated and his time is shown in a new activity.
 
 [Mock up](https://github.com/JulianRR/nPuzzle/blob/master/doc/nPuzle_MockUp.jpg)
+![alt tag](https://github.com/JulianRR/nPuzzle/blob/master/doc/nPuzle_MockUp.jpg)
 
 ## Design Document
 
