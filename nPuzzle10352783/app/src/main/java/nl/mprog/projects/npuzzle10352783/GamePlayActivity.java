@@ -134,9 +134,8 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
                 }
 
                 if (complete(tiles, shuffledTiles)) {
-                    Log.i("True", "True");
-                } else {
-                    Log.i("False", "False");
+                    Intent intent = new Intent(GamePlayActivity.this, YouWinActivity.class);
+                    startActivity(intent);
                 }
             }
         });
