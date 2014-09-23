@@ -5,5 +5,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_game_play">GamePlayActivity</string>
+    <string name="title_activity_game_setup">GameSetupActivity</string>
 
 </resources>

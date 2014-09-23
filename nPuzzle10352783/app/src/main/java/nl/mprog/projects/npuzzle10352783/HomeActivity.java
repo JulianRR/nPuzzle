@@ -63,7 +63,7 @@ public class HomeActivity extends Activity {
         play_button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(HomeActivity.this, GamePlayActivity.class);
+                        Intent intent = new Intent(HomeActivity.this, GameSetupActivity.class);
                         startActivity(intent);
                     }
                 }
