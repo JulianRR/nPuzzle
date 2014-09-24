@@ -118,7 +118,6 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("pos", "pos is" + i + "fdgdf" + view);
 
                 if (i == emptyPos - 1 || i == emptyPos + 1 ||i == emptyPos - difficulty || i == emptyPos + difficulty) {
                     Bitmap temp = shuffledTiles[i];
