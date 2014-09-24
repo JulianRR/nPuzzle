@@ -30,3 +30,21 @@ n-Puzzle with three difficulties, 3x3, 4x4 and 5x5.
 ## Style Guide
 
 [Style Guide](https://github.com/JulianRR/nPuzzle/blob/master/doc/StyleGuide.md)
+
+## Beta-Release
+The game can be played, but some settings can't be set yet by the user.
+
+finished:
+* Play button is functional
+* Choosing difficulty
+* Playing the game and solving it
+* Restart and quit buttons in the menu are functional
+* New activity when puzzle is solved.
+* Number of moves
+* Play again button
+
+Not finished:
+* Help button
+* Choosing image
+* App design, colors, button sizes etc.
+* Code clean up and comments
