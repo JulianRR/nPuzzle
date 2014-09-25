@@ -40,6 +40,10 @@ import java.util.Random;
  * Student ID: 10352783
  * E-mail: julian.ruger@student.uva.nl
  *
+ * commentaar
+ * globalveriables class anders doen
+ * constructor/class voor de gameplay
+ * dingen weghalen die niet gebruikt worden
  */
 
 
@@ -57,9 +61,11 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
     private ViewFlipper flipper;
     private GridView gameGrid;
     private Handler handler = new Handler();
+    private ImageView imgView;
 
     private int emptyPos;
     private int size;
+    private int img;
 
     int nMoves = 0;
     TextView moves;
@@ -85,7 +91,10 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
         flipper = (ViewFlipper) findViewById(R.id.viewFlipper1);
         moves = (TextView) findViewById(R.id.nMoves);
         menu = (Button) findViewById(R.id.menu);
+        imgView = (ImageView) findViewById(R.id.imageView);
 
+        img = globalVariables.getImage();
+        imgView.setImageResource(img);
 
 
         handler.postDelayed(new Runnable() {
@@ -105,7 +114,7 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
 
 
 
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.android_icon);
+        Bitmap image = BitmapFactory.decodeResource(getResources(), img);
 
         tiles = splitBitmap(image, difficulty);
         tiles[emptyPos] = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);

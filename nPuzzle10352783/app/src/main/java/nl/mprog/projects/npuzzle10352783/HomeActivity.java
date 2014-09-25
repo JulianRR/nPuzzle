@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.PopupWindow;
 
 /**
  * HomeActivity.java
@@ -25,9 +28,10 @@ import android.content.Intent;
 
 public class HomeActivity extends Activity {
 
-    Button play, help;
+    Button play, help, close;
     Intent intent;
-
+    PopupWindow popupHelp;
+    View popupView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,7 @@ public class HomeActivity extends Activity {
         play = (Button) findViewById(R.id.play_button);
         help = (Button) findViewById(R.id.help_button);
 
+
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +49,28 @@ public class HomeActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupView = getLayoutInflater().inflate(R.layout.popup_help, null);
+                popupHelp = new PopupWindow(popupView, 500, 600, true);
+                popupHelp.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+                close = (Button) popupView.findViewById(R.id.close_button);
+
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupHelp.dismiss();
+                    }
+                });
+
+
+            }
+        });
+
+
 
 
     }

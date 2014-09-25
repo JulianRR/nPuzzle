@@ -81,7 +81,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(130, 130));
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            imageView.setPadding(0, 0, 0, 8);
+            //imageView.setPadding(0, 0, 0, 8);
         } else {
             imageView = (ImageView) convertView;
         }

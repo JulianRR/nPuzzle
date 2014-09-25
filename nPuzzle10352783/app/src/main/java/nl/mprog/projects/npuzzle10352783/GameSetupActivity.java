@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 /**
@@ -29,6 +30,7 @@ public class GameSetupActivity extends Activity {
     private static final int HARD = 5;
 
     Button easy, medium, hard;
+    ImageButton im1, im2, im3;
     Intent intent;
 
 
@@ -45,13 +47,19 @@ public class GameSetupActivity extends Activity {
         medium = (Button) findViewById(R.id.medium_button);
         hard = (Button) findViewById(R.id.hard_button);
 
+        im1 = (ImageButton) findViewById(R.id.imageButton);
+        im2 = (ImageButton) findViewById(R.id.imageButton2);
+        im3 = (ImageButton) findViewById(R.id.imageButton3);
+
+
         intent = new Intent(this, GamePlayActivity.class);
+        globalVariables.setDifficulty(MEDIUM);
 
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 globalVariables.setDifficulty(EASY);
-                startActivity(intent);
+
             }
         });
 
@@ -59,7 +67,7 @@ public class GameSetupActivity extends Activity {
             @Override
             public void onClick(View view) {
                 globalVariables.setDifficulty(MEDIUM);
-                startActivity(intent);
+
 
             }
         });
@@ -68,10 +76,35 @@ public class GameSetupActivity extends Activity {
             @Override
             public void onClick(View view) {
                 globalVariables.setDifficulty(HARD);
-                startActivity(intent);
+
 
             }
         });
+
+        im1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariables.setImage(R.drawable.android_icon);
+                startActivity(intent);
+            }
+        });
+
+        im2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariables.setImage(R.drawable.android_vector);
+                startActivity(intent);
+            }
+        });
+
+        im3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariables.setImage(R.drawable.ic_launcher);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
