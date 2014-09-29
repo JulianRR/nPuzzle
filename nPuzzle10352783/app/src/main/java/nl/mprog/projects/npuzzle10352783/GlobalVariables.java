@@ -1,6 +1,7 @@
 package nl.mprog.projects.npuzzle10352783;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -9,7 +10,7 @@ import android.graphics.drawable.Drawable;
 public class GlobalVariables extends Application {
 
     private int difficulty;
-    private int image;
+    private Bitmap image;
 
     public int getDifficulty() {
         return difficulty;
@@ -19,12 +20,14 @@ public class GlobalVariables extends Application {
         difficulty = d;
     }
 
-    public int getImage() {
+    public Bitmap getImage() {
         return image;
     }
 
-    public void setImage(int im) {
-        image = im;
+    public void setImage(Bitmap img) {
+        image = img;
     }
+
+
 
 }

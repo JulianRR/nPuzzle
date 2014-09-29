@@ -14,31 +14,6 @@
         android:layout_marginTop="10dp"
         android:textSize="32dp"/>
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Easy"
-        android:id="@+id/easy_button"
-        android:layout_gravity="left|top"
-        android:layout_marginTop="75dp"
-        android:layout_marginLeft="5dp"/>
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Medium"
-        android:id="@+id/medium_button"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="75dp"/>
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Hard"
-        android:id="@+id/hard_button"
-        android:layout_gravity="right|top"
-        android:layout_marginTop="75dp"
-        android:layout_marginRight="5dp"/>
 
     <ImageButton
         android:layout_width="110dp"
@@ -84,6 +59,36 @@
         android:id="@+id/customImageView"
         android:layout_gravity="center"
         android:scaleType="fitCenter"/>
+
+
+    <ToggleButton
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textOn="Easy"
+        android:textOff="Easy"
+        android:id="@+id/easy_togglebutton"
+        android:layout_gravity="left|top"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="5dp"/>
+
+    <ToggleButton
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textOn="Medium"
+        android:textOff="Medium"
+        android:id="@+id/medium_togglebutton"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="75dp"/>
+
+    <ToggleButton
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textOn="Hard"
+        android:textOff="Hard"
+        android:id="@+id/hard_togglebutton"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="5dp"/>
 
 
 </FrameLayout>

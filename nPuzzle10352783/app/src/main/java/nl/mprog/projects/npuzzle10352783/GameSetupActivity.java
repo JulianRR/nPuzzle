@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,11 +16,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ToggleButton;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -36,12 +40,17 @@ public class GameSetupActivity extends Activity {
     private static final int EASY = 3;
     private static final int MEDIUM = 4;
     private static final int HARD = 5;
+    private static final int SELECT_PHOTO = 100;
+
+    GlobalVariables globalVariables;
 
     Button easy, medium, hard, customImg;
     ImageButton im1, im2, im3;
+    ToggleButton toggleEasy, toggleMedium, toggleHard;
     Intent intent;
     ImageView customImage;
     Uri imageUri;
+    Bitmap image;
 
 
 
@@ -51,12 +60,13 @@ public class GameSetupActivity extends Activity {
 
         setContentView(R.layout.activity_game_setup);
 
-        final GlobalVariables globalVariables = (GlobalVariables) getApplicationContext();
+        globalVariables = (GlobalVariables) getApplicationContext();
 
-        easy = (Button) findViewById(R.id.easy_button);
-        medium = (Button) findViewById(R.id.medium_button);
-        hard = (Button) findViewById(R.id.hard_button);
         customImg = (Button) findViewById(R.id.custom_button);
+
+        toggleEasy = (ToggleButton) findViewById(R.id.easy_togglebutton);
+        toggleMedium = (ToggleButton) findViewById(R.id.medium_togglebutton);
+        toggleHard = (ToggleButton) findViewById(R.id.hard_togglebutton);
 
         im1 = (ImageButton) findViewById(R.id.imageButton);
         im2 = (ImageButton) findViewById(R.id.imageButton2);
@@ -68,36 +78,45 @@ public class GameSetupActivity extends Activity {
         intent = new Intent(this, GamePlayActivity.class);
         globalVariables.setDifficulty(MEDIUM);
 
-        easy.setOnClickListener(new View.OnClickListener() {
+        toggleEasy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                globalVariables.setDifficulty(EASY);
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    globalVariables.setDifficulty(EASY);
+                    toggleMedium.setChecked(false);
+                    toggleHard.setChecked(false);
+                }
             }
         });
 
-        medium.setOnClickListener(new View.OnClickListener() {
+        toggleMedium.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                globalVariables.setDifficulty(MEDIUM);
-
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    globalVariables.setDifficulty(MEDIUM);
+                    toggleEasy.setChecked(false);
+                    toggleHard.setChecked(false);
+                }
             }
         });
 
-        hard.setOnClickListener(new View.OnClickListener() {
+        toggleHard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                globalVariables.setDifficulty(HARD);
-
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    globalVariables.setDifficulty(HARD);
+                    toggleEasy.setChecked(false);
+                    toggleMedium.setChecked(false);
+                }
             }
         });
+
 
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                globalVariables.setImage(R.drawable.android_icon);
+                image = BitmapFactory.decodeResource(getResources(), R.drawable.android_icon);
+                globalVariables.setImage(image);
                 startActivity(intent);
             }
         });
@@ -105,7 +124,8 @@ public class GameSetupActivity extends Activity {
         im2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                globalVariables.setImage(R.drawable.android_vector);
+                image = BitmapFactory.decodeResource(getResources(), R.drawable.android_vector);
+                globalVariables.setImage(image);
                 startActivity(intent);
             }
         });
@@ -113,7 +133,8 @@ public class GameSetupActivity extends Activity {
         im3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                globalVariables.setImage(R.drawable.ic_launcher);
+                image = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+                globalVariables.setImage(image);
                 startActivity(intent);
             }
         });
@@ -121,22 +142,9 @@ public class GameSetupActivity extends Activity {
         customImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pickImgIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickImgIntent, 1);
-
-                imageUri = pickImgIntent.getData();
-
-
-                Bitmap bitmap;
-
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                    customImage.setImageBitmap(bitmap);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Intent chooseImageIntent = new Intent(Intent.ACTION_PICK);
+                chooseImageIntent.setType("image/*");
+                startActivityForResult(chooseImageIntent, SELECT_PHOTO);
 
             }
         });
@@ -152,25 +160,30 @@ public class GameSetupActivity extends Activity {
 
     }
 
-    /** * Photo Selection result */
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (RESULT_OK == resultCode) {
-//            Uri imageUri = intent.getData();
-//            Bitmap bitmap;
-//            try {
-//                bitmap = MediaStore.Images.Media.getBitmap(
-//                        getContentResolver(), imageUri);
-//                customImage.setImageBitmap(bitmap);
-//            } catch (FileNotFoundException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-//
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        switch(requestCode) {
+            case SELECT_PHOTO:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    InputStream imageStream = null;
+                    try {
+                        imageStream = getContentResolver().openInputStream(selectedImage);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    image = BitmapFactory.decodeStream(imageStream);
+                    customImage.setImageBitmap(image);
+                    globalVariables.setImage(image);
+                    startActivity(intent);
+
+                }
+        }
+    }
+
+
 
 
 }

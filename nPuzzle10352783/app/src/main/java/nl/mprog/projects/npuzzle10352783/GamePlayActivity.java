@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -62,17 +64,20 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
     private GridView gameGrid;
     private Handler handler = new Handler();
     private ImageView imgView;
+    private PopupWindow changeDifficulty;
+    private View popupView;
 
     private int emptyPos;
     private int size;
-    private int img;
+    private Bitmap image;
 
     int nMoves = 0;
     TextView moves;
-    Button menu;
+    Button menu, changeEasy, changeMedium, changeHard;
 
 
-
+    GlobalVariables globalVariables;
+    GamePlay gamePlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +85,8 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
 
         setContentView(R.layout.activity_game_play);
 
-        final GlobalVariables globalVariables = (GlobalVariables) getApplicationContext();
+        globalVariables = (GlobalVariables) getApplicationContext();
+
 
         difficulty = globalVariables.getDifficulty();
         emptyPos = difficulty * difficulty - 1;
@@ -93,9 +99,17 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
         menu = (Button) findViewById(R.id.menu);
         imgView = (ImageView) findViewById(R.id.imageView);
 
-        img = globalVariables.getImage();
-        imgView.setImageResource(img);
+        image = globalVariables.getImage();
+        imgView.setImageBitmap(image);
 
+
+
+        popupView = getLayoutInflater().inflate(R.layout.popup_difficulty, null);
+        changeDifficulty = new PopupWindow(popupView, 400, 400, true);
+
+        changeEasy = (Button) popupView.findViewById(R.id.change_easy);
+        changeMedium = (Button) popupView.findViewById(R.id.change_medium);
+        changeHard = (Button) popupView.findViewById(R.id.change_hard);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -114,13 +128,16 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
 
 
 
-        Bitmap image = BitmapFactory.decodeResource(getResources(), img);
+        gamePlay = new GamePlay(difficulty, emptyPos, size, image,
+                BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
 
-        tiles = splitBitmap(image, difficulty);
-        tiles[emptyPos] = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-
-        shuffledTiles = splitBitmap(image, difficulty);
-        shuffleTiles();
+        tiles = gamePlay.splitBitmap();
+        shuffledTiles = gamePlay.shuffleTiles(tiles);
+//        tiles = splitBitmap(image, difficulty);
+//        tiles[emptyPos] = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+//
+//        shuffledTiles = splitBitmap(image, difficulty);
+//        shuffleTiles();
 
         gameGrid.setAdapter(new ImageAdapter(this, shuffledTiles));
 
@@ -128,20 +145,27 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if (i == emptyPos - 1 || i == emptyPos + 1 ||i == emptyPos - difficulty || i == emptyPos + difficulty) {
-                    Bitmap temp = shuffledTiles[i];
-                    shuffledTiles[i] = shuffledTiles[emptyPos];
-                    shuffledTiles[emptyPos] = temp;
-                    emptyPos = i;
+//                if (i == emptyPos - 1 || i == emptyPos + 1 ||i == emptyPos - difficulty || i == emptyPos + difficulty) {
+//                    Bitmap temp = shuffledTiles[i];
+//                    shuffledTiles[i] = shuffledTiles[emptyPos];
+//                    shuffledTiles[emptyPos] = temp;
+//                    emptyPos = i;
+//                    nMoves++;
+//                    moves.setText("Moves: " + nMoves);
+//
+//                    gameGrid.setAdapter(new ImageAdapter(getApplicationContext(), shuffledTiles));
+//
+//
+//                }
+                if(gamePlay.updateGrid(i, shuffledTiles)) {
                     nMoves++;
                     moves.setText("Moves: " + nMoves);
 
                     gameGrid.setAdapter(new ImageAdapter(getApplicationContext(), shuffledTiles));
-
-
                 }
 
-                if (complete(tiles, shuffledTiles)) {
+
+                if (gamePlay.complete(tiles, shuffledTiles)) {
                     Intent intent = new Intent(GamePlayActivity.this, YouWinActivity.class);
                     startActivity(intent);
                 }
@@ -159,6 +183,38 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
             }
         });
 
+        changeEasy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariables.setDifficulty(EASY);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+
+        changeMedium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariables.setDifficulty(MEDIUM);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+
+        changeHard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariables.setDifficulty(HARD);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 
@@ -170,55 +226,55 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
 
 
 
-    public Bitmap[] splitBitmap(Bitmap Image, int difficulty) {
-        Bitmap[] imageTiles = new Bitmap[size];
-        Drawable[] splitImage = new Drawable[size];
+//    public Bitmap[] splitBitmap(Bitmap Image, int difficulty) {
+//        Bitmap[] imageTiles = new Bitmap[size];
+//        Drawable[] splitImage = new Drawable[size];
+//
+//        int width = Image.getWidth();
+//        int height = Image.getHeight();
+//        int columns = width / difficulty;
+//        int rows = height / difficulty;
+//        int i = 0;
+//        for (int y = 0; y < difficulty; y++) {
+//            for (int x = 0; x < difficulty; x++) {
+//                imageTiles[i] = Bitmap.createBitmap(Image, x*columns, y*rows, columns, rows);
+//
+//                i++;
+//            }
+//
+//        }
+//
+//        return imageTiles;
+//    }
 
-        int width = Image.getWidth();
-        int height = Image.getHeight();
-        int columns = width / difficulty;
-        int rows = height / difficulty;
-        int i = 0;
-        for (int y = 0; y < difficulty; y++) {
-            for (int x = 0; x < difficulty; x++) {
-                imageTiles[i] = Bitmap.createBitmap(Image, x*columns, y*rows, columns, rows);
+//    public void shuffleTiles() {
+//        shuffledTiles[emptyPos] = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+//
+//        for (int i = emptyPos-1; i >= 0; i--) {
+//            shuffledTiles[i] = tiles[emptyPos - (i+1)];
+//        }
+//
+//        if (difficulty == MEDIUM) {
+//            Bitmap tmp = shuffledTiles[0];
+//            shuffledTiles[0] = shuffledTiles[1];
+//            shuffledTiles[1] = tmp;
+//        }
+//
+//    }
 
-                i++;
-            }
-
-        }
-
-        return imageTiles;
-    }
-
-    public void shuffleTiles() {
-        shuffledTiles[emptyPos] = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-
-        for (int i = emptyPos-1; i >= 0; i--) {
-            shuffledTiles[i] = tiles[emptyPos - (i+1)];
-        }
-
-        if (difficulty == MEDIUM) {
-            Bitmap tmp = shuffledTiles[0];
-            shuffledTiles[0] = shuffledTiles[1];
-            shuffledTiles[1] = tmp;
-        }
-
-    }
-
-    public boolean complete(Bitmap[] a, Bitmap[] b) {
-        int trueCount = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i].sameAs(b[i])) {
-                trueCount++;
-            }
-        }
-        if (trueCount == size) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean complete(Bitmap[] a, Bitmap[] b) {
+//        int trueCount = 0;
+//        for (int i = 0; i < a.length; i++) {
+//            if (a[i].sameAs(b[i])) {
+//                trueCount++;
+//            }
+//        }
+//        if (trueCount == size) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 
     @Override
@@ -230,6 +286,11 @@ public class GamePlayActivity extends Activity implements PopupMenu.OnMenuItemCl
                 startActivity(intent);
                 return true;
             case R.id.change_difficulty:
+
+                changeDifficulty.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+
+
+
                 return true;
             case R.id.quit:
                 Intent intent2 = new Intent(GamePlayActivity.this, HomeActivity.class);
