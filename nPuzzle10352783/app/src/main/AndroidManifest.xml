@@ -3,7 +3,6 @@
     package="nl.mprog.projects.npuzzle10352783" >
 
     <application
-        android:name=".GlobalVariables"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
