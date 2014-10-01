@@ -32,6 +32,7 @@ public class HomeActivity extends Activity {
     Intent intent;
     PopupWindow popupHelp;
     View popupView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class HomeActivity extends Activity {
         play = (Button) findViewById(R.id.play_button);
         help = (Button) findViewById(R.id.help_button);
 
-
+        /* The play button. GameSetupActivity start on click. */
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +51,7 @@ public class HomeActivity extends Activity {
             }
         });
 
+        /* The help button. Popup window with game information is shown on click. */
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,17 +72,7 @@ public class HomeActivity extends Activity {
             }
         });
 
-
-
-
     }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-    }
-
 
 
 }

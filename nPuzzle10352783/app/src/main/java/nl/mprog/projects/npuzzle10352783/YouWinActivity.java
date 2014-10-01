@@ -1,16 +1,11 @@
 package nl.mprog.projects.npuzzle10352783;
 
-import nl.mprog.projects.npuzzle10352783.util.SystemUiHider;
-
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -26,6 +21,12 @@ public class YouWinActivity extends Activity {
 
     Button playAgain;
     Intent intent;
+    private int nMoves;
+
+    TextView win;
+
+    GameSettings settings;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,10 @@ public class YouWinActivity extends Activity {
 
         setContentView(R.layout.activity_you_win);
 
+        settings = GameSettings.getInstance();
+
         playAgain = (Button) findViewById(R.id.playagain_button);
+        win = (TextView) findViewById(R.id.textView);
 
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,16 +47,10 @@ public class YouWinActivity extends Activity {
             }
         });
 
-
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+        win.setText("You Win! \n You solved the puzzle \n with " + settings.getMoves() + " moves!");
 
 
     }
-
 
 
 }
